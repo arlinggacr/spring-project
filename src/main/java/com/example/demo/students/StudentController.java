@@ -3,9 +3,9 @@ package com.example.demo.students;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path="api/v1/student")
@@ -18,8 +18,18 @@ public class StudentController {
     this.studentService =  studentService;
   }
 
-  @GetMapping(value="/all-data")
+  @GetMapping(path="/all-data")
   public List<Students> getStudent(){
     return studentService.getStudents();
+  }
+
+  @PostMapping(path="/register")
+  public void registerNewStudent(@RequestBody Students student){
+    studentService.addNewStudent(student);
+  }
+
+  @DeleteMapping(path="/delete/{studentId}")
+  public void deleteStudent(@PathVariable("studentId") Long studentId) {
+    studentService.deleteStudent(studentId);
   }
 }
