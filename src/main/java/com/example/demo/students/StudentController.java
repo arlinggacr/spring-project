@@ -3,8 +3,6 @@ package com.example.demo.students;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -31,5 +29,12 @@ public class StudentController {
   @DeleteMapping(path="/delete/{studentId}")
   public void deleteStudent(@PathVariable("studentId") Long studentId) {
     studentService.deleteStudent(studentId);
+  }
+
+  @PutMapping(path="/update-data/{studentId}")
+  public void updateStudent(@PathVariable("studentId") Long studentId,
+                            @RequestParam(required = false) String student_name,
+                            @RequestParam(required = false) String email) {
+    studentService.updateStudent(studentId, student_name, email);
   }
 }
