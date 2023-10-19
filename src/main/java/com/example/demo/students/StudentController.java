@@ -15,7 +15,7 @@ public class StudentController {
 
   @Autowired // this autoWired is same case like Injectable Controller
   public StudentController(StudentService studentService) {
-    this.studentService =  studentService;
+    this.studentService = studentService;
   }
 
   @GetMapping(path="/all-data")
